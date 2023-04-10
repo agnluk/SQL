@@ -24,25 +24,37 @@ import { minutes } from "./utils";
 
 const insertActors = (actors: string[]) => {
   return (
-    `insert into actors (full_name) values` +
-    actors.map(actor => `('${escape(actor)}')`).join(",")
+    `insert into ACTORS (full_name) values ` +
+    actors.map(actor => `('${escape(actor)}')`).join(", ")
   );
 };
 
 const insertKeywords = (keywords: string[]) => {
-  throw new Error(`todo`);
+  return (
+    `insert into ${keywords} (full_name) values ` +
+    keywords.map(keyword => `('${escape(keyword)}')`).join(", ")
+  );
 };
 
 const insertDirectors = (directors: string[]) => {
-  throw new Error(`todo`);
+  return (
+    `insert into ${directors} (full_name) values ` +
+    directors.map(director => `('${escape(director)}')`).join(", ")
+  );
 };
 
 const insertGenres = (genres: string[]) => {
-  throw new Error(`todo`);
+  return (
+    `insert into ${genres} (full_name) values ` +
+    genres.map(genre => `('${escape(genre)}')`).join(", ")
+  );
 };
 
 const insertProductionCompanies = (companies: string[]) => {
-  throw new Error(`todo`);
+  return (
+    `insert into ${companies} (full_name) values ` +
+    companies.map(companie => `('${escape(companie)}')`).join(", ")
+  );
 };
 
 const insertMovies = (movies: Movie[]) => {

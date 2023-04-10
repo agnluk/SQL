@@ -1,7 +1,9 @@
-export const selectActorByName = (fullName: string): string => {
-  throw new Error(`todo`);
-};
+import { escape } from "lodash";
 
+export const selectActorByName = (fullName: string): string => {
+  const values = fullName;
+  return values;
+};
 export const selectKeyword = (keyword: string): string => {
   throw new Error(`todo`);
 };
