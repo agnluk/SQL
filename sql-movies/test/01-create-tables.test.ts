@@ -25,7 +25,6 @@ tagline text NULL,
 overview text NOT NULL,
 runtime integer NOT NULL,
 release_date text NOT NULL
-
 )`;
 
 const CREATE_MOVIE_RATINGS_TABLE = `CREATE TABLE ${MOVIE_RATINGS}(

@@ -10,15 +10,45 @@ import { Database } from "../src/database";
 import { tableInfo } from "../src/queries/table-info";
 import { minutes, Log } from "./utils";
 
-const CREATE_MOVIE_GENRES_TABLE = ``;
+const CREATE_MOVIE_GENRES_TABLE = `CREATE TABLE movie_genres (
+  movie_id integer NOT NULL REFERENCES movies(id),
+  genre_id integer NOT NULL REFERENCES genres(id),
+  PRIMARY KEY (movie_id, genre_id)
+  FOREIGN KEY (movie_id) REFERENCES movies(id),
+  FOREIGN KEY (genre_id) REFERENCES genres(id)
+)`;
 
-const CREATE_MOVIE_ACTORS_TABLE = ``;
+const CREATE_MOVIE_ACTORS_TABLE = `CREATE TABLE movie_actors (
+  movie_id integer NOT NULL REFERENCES movies(id),
+  actor_id integer NOT NULL REFERENCES actors(id),
+  PRIMARY KEY (movie_id, actor_id)
+  FOREIGN KEY (movie_id) REFERENCES movies(id),
+  FOREIGN KEY (actor_id) REFERENCES actors(id)
+)`;
 
-const CREATE_MOVIE_DIRECTORS_TABLE = ``;
+const CREATE_MOVIE_DIRECTORS_TABLE = `CREATE TABLE movie_directors (
+  movie_id integer NOT NULL REFERENCES directors(id),
+  director_id integer NOT NULL REFERENCES movies(id),
+  PRIMARY KEY (movie_id, director_id)
+  FOREIGN KEY (movie_id) REFERENCES movies(id),
+  FOREIGN KEY (director_id) REFERENCES directors(id)
+)`;
 
-const CREATE_MOVIE_KEYWORDS_TABLE = ``;
+const CREATE_MOVIE_KEYWORDS_TABLE = `CREATE TABLE movie_keywords (
+  movie_id integer NOT NULL REFERENCES movies(id),
+  keyword_id integer NOT NULL REFERENCES keywords(id),
+  PRIMARY KEY (movie_id, keyword_id)
+  FOREIGN KEY (movie_id) REFERENCES movies(id),
+  FOREIGN KEY (keyword_id) REFERENCES keywords(id)
+)`;
 
-const CREATE_MOVIE_PRODUCTION_COMPANIES_TABLE = ``;
+const CREATE_MOVIE_PRODUCTION_COMPANIES_TABLE = `CREATE TABLE movie_production_companies (
+  movie_id integer NOT NULL REFERENCES movies(id),
+  company_id integer NOT NULL REFERENCES company(id),
+  PRIMARY KEY (movie_id, company_id)
+  FOREIGN KEY (movie_id) REFERENCES movies(id),
+  FOREIGN KEY (company_id) REFERENCES company(id)
+)`;
 
 describe("Insert Combined Data", () => {
   let db: Database;
