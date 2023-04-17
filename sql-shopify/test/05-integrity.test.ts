@@ -14,10 +14,9 @@ describe("Foreign Keys", () => {
 
     it("should not be able to delete category if any app is linked", async done => {
         const categoryId = 6;
-        const query = `WHERE id = ${categoryId} 
-        AND NOT EXISTS (
-        SELECT 1 FROM APPS_CATEGORIES 
-        WHERE category_id = ${categoryId}`;
+        const query = `DELETE FROM ${CATEGORIES}
+        WHERE id = ${categoryId}
+        AND id NOT IN (SELECT category_id FROM APPS_CATEGORIES)`;
 
         try {
             await db.delete(query);
@@ -31,10 +30,9 @@ describe("Foreign Keys", () => {
 
     it("should not be able to delete pricing plan if any app is linked", async done => {
         const pricingPlanId = 100;
-        const query = `WHERE id = ${pricingPlanId} 
-        AND NOT EXISTS (
-        SELECT 1 FROM APPS_PRICING_PLANS 
-        WHERE app_id = ${pricingPlanId}`;
+        const query = `DELETE FROM ${PRICING_PLANS}
+        WHERE id = ${pricingPlanId}
+        AND id NOT IN (SELECT pricing_plan_id FROM APPS_PRICING_PLANS)`;
 
         try {
             await db.delete(query);
@@ -48,10 +46,9 @@ describe("Foreign Keys", () => {
 
     it("should not be able to delete app if any data is linked", async done => {
         const appId = 245;
-        const query = `WHERE id = ${appId}
-        AND NOT EXISTS (
-        SELECT 1 FROM APPS_CATEGORIES
-        WHERE app_id = ${appId}`;
+        const query = `DELETE FROM ${APPS}
+        WHERE id = ${appId}
+        AND id NOT IN (SELECT app_id FROM REVIEWS)`;
       
         try {
             await db.delete(query);
